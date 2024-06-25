@@ -1,0 +1,176 @@
+ScreenManager:
+    WelcomeScreen:
+    MainScreen:
+    HistoryScreen:
+    GraphScreen:
+
+<WelcomeScreen>:
+    name: 'welcome'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        Image:
+            source: 'welcome_image.jpg'
+            size_hint: None, None
+            size: self.texture_size
+            allow_stretch: True
+            keep_ratio: True
+            pos_hint: {"center_x": 0.5}
+
+        MDLabel:
+            text: "Welcome to the Typing Speed Calculator"
+            halign: "center"
+            theme_text_color: "Primary"
+
+        MDLabel:
+            text: "This app lets you measure your typing speed and accuracy. Click 'Let's Start' to begin."
+            halign: "center"
+            theme_text_color: "Secondary"
+
+        MDRaisedButton:
+            id: start_button
+            text: "Let's Start"
+            size_hint: None, None
+            size: 200, 50
+            pos_hint: {"center_x": 0.5}
+            on_release: app.go_to_main()
+
+<MainScreen>:
+    name: 'main'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        MDLabel:
+            id: label_text
+            text: "Welcome to the Typing Speed Calculator"
+            halign: "center"
+            valign: "middle"
+
+        TextInput:
+            id: user_text
+            multiline: True
+            readonly: False
+
+        MDLabel:
+            id: label_timer
+            text: "Time: 0.0 s"
+            halign: "center"
+            valign: "middle"
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '50dp'
+            spacing: 10
+            pos_hint: {"center_x": 0.5}
+
+            MDRaisedButton:
+                text: 'Start/Restart'
+                size_hint_x: 0.25
+                on_release: app.start()
+
+            MDRaisedButton:
+                text: 'Stop'
+                size_hint_x: 0.25
+                on_release: app.stop()
+
+            MDRaisedButton:
+                text: 'New Text'
+                size_hint_x: 0.25
+                on_release: app.new_text()
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '50dp'
+            spacing: 10
+            pos_hint: {"center_x": 0.5}
+
+            MDRaisedButton:
+                text: 'Light Theme'
+                size_hint_x: 0.25
+                on_release: app.set_theme("Light")
+
+            MDRaisedButton:
+                text: 'Dark Theme'
+                size_hint_x: 0.25
+                on_release: app.set_theme("Dark")
+
+        MDLabel:
+            id: label_speed
+            text: "Your typing speed is 0 WPM"
+            halign: "center"
+
+        MDLabel:
+            id: label_accuracy
+            text: "Your typing accuracy is 0 %"
+            halign: "center"
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '50dp'
+            spacing: 10
+            pos_hint: {"center_x": 0.5}
+
+            MDRaisedButton:
+                text: 'History'
+                size_hint_x: 0.25
+                on_release: app.go_to_history()
+
+            MDRaisedButton:
+                text: 'Graph'
+                size_hint_x: 0.25
+                on_release: app.go_to_graph()
+
+<HistoryScreen>:
+    name: 'history'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        MDLabel:
+            text: "Result History"
+            halign: "center"
+            theme_text_color: "Primary"
+
+        ScrollView:
+            MDList:
+                id: history_list
+                spacing: 10
+
+        MDRaisedButton:
+            text: 'Back'
+            size_hint: None, None
+            size: 200, 50
+            pos_hint: {"center_x": 0.5}
+            on_release: app.go_to_main()
+
+<GraphScreen>:
+    name: 'graph'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        MDLabel:
+            text: "Result Graph"
+            halign: "center"
+            theme_text_color: "Primary"
+
+        BoxLayout:
+            id: graph_container
+            size_hint_y: None
+            height: '400dp'
+
+        MDRaisedButton:
+            text: 'Back'
+            size_hint: None, None
+            size: 200, 50
+            pos_hint: {"center_x": 0.5}
+            on_release: app.go_to_main()
